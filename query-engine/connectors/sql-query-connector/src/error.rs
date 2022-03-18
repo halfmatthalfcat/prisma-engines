@@ -295,6 +295,7 @@ impl From<quaint::error::Error> for SqlError {
             e @ QuaintKind::PoolTimeout { .. } => SqlError::ConnectionError(e),
             e @ QuaintKind::PoolClosed { .. } => SqlError::ConnectionError(e),
             e @ QuaintKind::TlsError { .. } => Self::ConnectionError(e),
+            e @ QuaintKind::Unsupported(_) => SqlError::QueryError(e.into()),
         }
     }
 }

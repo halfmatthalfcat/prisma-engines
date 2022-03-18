@@ -78,6 +78,7 @@ fn convert_filter_internal(
         Filter::Aggregation(filter) => aggregation_filter(filter, invert, invert_undefined_exclusion)?,
         Filter::Composite(filter) => composite_filter(filter, invert, invert_undefined_exclusion, prefix)?,
         Filter::BoolFilter(_) => unimplemented!("MongoDB boolean filter."),
+        Filter::LtreeList(_) => unimplemented!("MongoDB ltree filter."),
     };
 
     Ok(filter_pair)
@@ -263,6 +264,7 @@ fn default_scalar_filter(
         ScalarCondition::IsSet(is_set) => render_is_set(&field_name, is_set),
         ScalarCondition::Search(_, _) => unimplemented!("Full-text search is not supported yet on MongoDB"),
         ScalarCondition::NotSearch(_, _) => unimplemented!("Full-text search is not supported yet on MongoDB"),
+        ScalarCondition::LtreeCompare(_) => unimplemented!("ltree is not supported on MongoDB"),
     };
 
     let cond = if !is_set_cond {
@@ -338,6 +340,9 @@ fn insensitive_scalar_filter(
         ScalarCondition::IsSet(is_set) => Ok(render_is_set(&field_name, is_set)),
         ScalarCondition::JsonCompare(_) => Err(MongoError::Unsupported(
             "JSON filtering is not yet supported on MongoDB".to_string(),
+        )),
+        ScalarCondition::LtreeCompare(_) => Err(MongoError::Unsupported(
+            "ltree is not yet supported on MongoDB".to_string(),
         )),
         ScalarCondition::Search(_, _) | ScalarCondition::NotSearch(_, _) => Err(MongoError::Unsupported(
             "Full-text search is not supported yet on MongoDB".to_string(),

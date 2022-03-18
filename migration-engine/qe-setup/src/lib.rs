@@ -16,6 +16,7 @@ use datamodel::{
             SQLITE_SOURCE_NAME,
         },
     },
+    datamodel_connector::capabilities::*,
     Datasource,
 };
 use enumflags2::BitFlags;
@@ -46,12 +47,12 @@ fn parse_configuration(datamodel: &str) -> ConnectorResult<(Datasource, String, 
 }
 
 /// Database setup for connector-test-kit-rs.
-pub async fn setup(prisma_schema: &str) -> ConnectorResult<()> {
+pub async fn setup(prisma_schema: &str, capabilities: &[ConnectorCapability]) -> ConnectorResult<()> {
     let (source, url, _preview_features) = parse_configuration(prisma_schema)?;
 
     match &source.active_provider {
         provider if [POSTGRES_SOURCE_NAME, COCKROACHDB_SOURCE_NAME].contains(&provider.as_str()) => {
-            postgres_setup(url, prisma_schema).await?
+            postgres_setup(url, prisma_schema, capabilities).await?
         }
         provider if [MSSQL_SOURCE_NAME].contains(&provider.as_str()) => mssql_setup(url, prisma_schema).await?,
         provider if [MYSQL_SOURCE_NAME].contains(&provider.as_str()) => {

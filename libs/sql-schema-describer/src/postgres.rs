@@ -870,6 +870,7 @@ fn get_column_type(row: &ResultRow, enums: &[Enum]) -> ColumnType {
         "bool" | "_bool" => (Boolean, Some(PostgresType::Boolean)),
         "text" | "_text" => (String, Some(PostgresType::Text)),
         "citext" | "_citext" => (String, Some(PostgresType::Citext)),
+        "ltree" | "_ltree" => (String, Some(PostgresType::Ltree)),
         "varchar" | "_varchar" => (String, Some(PostgresType::VarChar(precision.character_maximum_length))),
         "bpchar" | "_bpchar" => (String, Some(PostgresType::Char(precision.character_maximum_length))),
         // https://www.cockroachlabs.com/docs/stable/string.html

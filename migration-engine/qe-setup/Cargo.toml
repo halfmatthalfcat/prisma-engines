@@ -16,7 +16,8 @@ tempfile = "3.3.0"
 url = "2"
 
 [dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 features = [
     "sqlite",
     "postgresql",

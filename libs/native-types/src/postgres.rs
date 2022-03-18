@@ -29,6 +29,7 @@ pub enum PostgresType {
     Xml,
     Json,
     JsonB,
+    Ltree,
 }
 
 impl super::NativeType for PostgresType {

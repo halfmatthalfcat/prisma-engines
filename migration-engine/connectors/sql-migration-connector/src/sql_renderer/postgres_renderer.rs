@@ -490,6 +490,7 @@ fn render_column_type(col: &ColumnWalker<'_>, flavour: &PostgresFlavour) -> Cow<
         PostgresType::Xml => "XML".into(),
         PostgresType::Json => "JSON".into(),
         PostgresType::JsonB => "JSONB".into(),
+        PostgresType::Ltree => "ltree".into(),
     };
 
     if t.arity.is_list() {

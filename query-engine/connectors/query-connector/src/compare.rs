@@ -187,3 +187,38 @@ pub trait CompositeCompare {
 
     fn equals(&self, val: PrismaValue) -> Filter;
 }
+
+/// Comparison methods for ltree fields
+pub trait LtreeCompare {
+    fn ltree_is_ancestor<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_not_ancestor<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_is_descendant<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_not_descendant<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_match<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_not_match<T>(&self, value: Vec<T>) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_match_fulltext<T>(&self, value: T) -> Filter
+    where
+        T: Into<PrismaValue>;
+
+    fn ltree_not_match_fulltext<T>(&self, value: T) -> Filter
+    where
+        T: Into<PrismaValue>;
+}

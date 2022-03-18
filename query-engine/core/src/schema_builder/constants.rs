@@ -104,6 +104,12 @@ pub mod filters {
     pub const STRING_STARTS_WITH: &str = "string_starts_with";
     pub const STRING_ENDS_WITH: &str = "string_ends_with";
     pub const JSON_TYPE: &str = "json_type";
+
+    // ltree filters
+    pub const IS_ANCESTOR: &str = "ancestor_of";
+    pub const IS_DESCENDANT: &str = "descendent_of";
+    pub const MATCHES: &str = "matches";
+    pub const MATCHES_FULLTEXT: &str = "matches_fulltext";
 }
 
 pub mod aggregations {

@@ -17,7 +17,8 @@ tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
 url = "2.1.1"
 
 [dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 optional = true
 features = [
     "postgresql",

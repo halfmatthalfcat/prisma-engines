@@ -2,7 +2,7 @@ use crate::{
     constants::{aggregations, filters, json_null},
     ParsedInputMap, ParsedInputValue, QueryGraphBuilderError, QueryGraphBuilderResult,
 };
-use connector::{Filter, JsonCompare, JsonFilterPath, JsonTargetType, ScalarCompare, ScalarListCompare};
+use connector::{Filter, JsonCompare, JsonFilterPath, JsonTargetType, LtreeCompare, ScalarCompare, ScalarListCompare};
 use prisma_models::{PrismaValue, ScalarFieldRef, TypeIdentifier};
 use std::convert::TryInto;
 
@@ -261,6 +261,8 @@ fn parse_internal_scalar(
     field: &ScalarFieldRef,
     reverse: bool,
 ) -> QueryGraphBuilderResult<Vec<Filter>> {
+    let is_ltree = field.native_type.as_ref().map_or(false, |f| f.name == "ltree");
+
     match filter_key {
         filters::NOT_LOWERCASE => {
             match input {
@@ -340,6 +342,21 @@ fn parse_internal_scalar(
         filters::HAS_EVERY => Ok(vec![field.contains_every_element(as_prisma_value_list(input)?)]),
         filters::HAS_SOME => Ok(vec![field.contains_some_element(as_prisma_value_list(input)?)]),
         filters::IS_EMPTY => Ok(vec![field.is_empty_list(input.try_into()?)]),
+
+        // ltree-specific filters
+        filters::IS_ANCESTOR if is_ltree && reverse => Ok(vec![field.ltree_not_ancestor(as_prisma_value_list(input)?)]),
+        filters::IS_DESCENDANT if is_ltree && reverse => {
+            Ok(vec![field.ltree_not_descendant(as_prisma_value_list(input)?)])
+        }
+        filters::MATCHES if is_ltree && reverse => Ok(vec![field.ltree_match(as_prisma_value_list(input)?)]),
+        filters::MATCHES_FULLTEXT if is_ltree && reverse => {
+            Ok(vec![field.ltree_not_match_fulltext(as_prisma_value(input)?)])
+        }
+
+        filters::IS_ANCESTOR if is_ltree => Ok(vec![field.ltree_is_ancestor(as_prisma_value_list(input)?)]),
+        filters::IS_DESCENDANT if is_ltree => Ok(vec![field.ltree_is_descendant(as_prisma_value_list(input)?)]),
+        filters::MATCHES if is_ltree => Ok(vec![field.ltree_match(as_prisma_value_list(input)?)]),
+        filters::MATCHES_FULLTEXT if is_ltree => Ok(vec![field.ltree_match_fulltext(as_prisma_value(input)?)]),
 
         // Aggregation filters
         aggregations::UNDERSCORE_COUNT => aggregation_filter(field, input, reverse, Filter::count),

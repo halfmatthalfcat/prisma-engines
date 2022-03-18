@@ -12,6 +12,7 @@ pub mod insensitive_filters;
 pub mod json;
 pub mod json_path;
 pub mod list_filters;
+pub mod ltree;
 pub mod many_relation;
 pub mod one2one_regression;
 pub mod one_relation;

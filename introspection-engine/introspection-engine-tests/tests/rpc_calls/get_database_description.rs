@@ -138,6 +138,10 @@ async fn database_description_for_mysql_8_should_work(api: &TestApi) -> TestResu
 
 #[test_connector(tags(Postgres), exclude(CockroachDb))]
 async fn database_description_for_postgres_should_work(api: &TestApi) -> TestResult {
+    &api.barrel()
+        .execute(|migration| migration.inject_custom("DROP EXTENSION IF EXISTS \"ltree\";"))
+        .await?;
+
     setup_blog(&api.barrel()).await?;
 
     let expected = expect![[r#"

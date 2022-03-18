@@ -20,7 +20,7 @@ pub use schema_gen::*;
 pub use templating::*;
 
 use colored::Colorize;
-use datamodel_connector::ConnectorCapability;
+use datamodel_connector::capabilities::*;
 use lazy_static::lazy_static;
 use std::future::Future;
 use tokio::runtime::Builder;
@@ -34,8 +34,8 @@ lazy_static! {
 }
 
 /// Setup of everything as defined in the passed datamodel.
-pub async fn setup_project(datamodel: &str) -> TestResult<()> {
-    Ok(qe_setup::setup(datamodel).await?)
+pub async fn setup_project(datamodel: &str, capabilities: &[ConnectorCapability]) -> TestResult<()> {
+    Ok(qe_setup::setup(datamodel, capabilities).await?)
 }
 
 /// Teardown of a test setup.
@@ -102,7 +102,7 @@ pub fn run_relation_link_test<F>(
         run_with_tokio(
             async move {
                 tracing::debug!("Used datamodel:\n {}", datamodel.clone().yellow());
-                setup_project(&datamodel).await.unwrap();
+                setup_project(&datamodel, capabilities).await.unwrap();
 
                 let runner = Runner::load(config.runner(), datamodel.clone(), connector)
                     .await

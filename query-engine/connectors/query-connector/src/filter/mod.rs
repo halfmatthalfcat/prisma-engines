@@ -9,6 +9,7 @@ mod composite;
 mod into_filter;
 mod json;
 mod list;
+mod ltree;
 mod relation;
 mod scalar;
 
@@ -16,6 +17,7 @@ pub use composite::*;
 pub use into_filter::*;
 pub use json::*;
 pub use list::*;
+pub use ltree::*;
 pub use relation::*;
 pub use scalar::*;
 
@@ -26,6 +28,7 @@ pub enum Filter {
     Not(Vec<Filter>),
     Scalar(ScalarFilter),
     ScalarList(ScalarListFilter),
+    LtreeList(LtreeFilter),
     OneRelationIsNull(OneRelationIsNullFilter),
     Relation(RelationFilter),
     Composite(CompositeFilter),
@@ -184,6 +187,12 @@ impl From<ScalarFilter> for Filter {
 impl From<ScalarListFilter> for Filter {
     fn from(sf: ScalarListFilter) -> Self {
         Filter::ScalarList(sf)
+    }
+}
+
+impl From<LtreeFilter> for Filter {
+    fn from(lt: LtreeFilter) -> Self {
+        Filter::LtreeList(lt)
     }
 }
 

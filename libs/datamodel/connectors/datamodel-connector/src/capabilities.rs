@@ -54,6 +54,7 @@ capabilities!(
     DefaultValueAuto,
     TwoWayEmbeddedManyToManyRelation,
     ImplicitManyToManyRelation,
+    Ltree,
     //Start of ME/IE only capabilities
     AutoIncrementAllowedOnNonId,
     AutoIncrementMultipleAllowed,

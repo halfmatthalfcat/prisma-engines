@@ -29,6 +29,7 @@ thiserror = "1.0"
 uuid = { version = "0.8", features = ["serde", "v4"] }
 
 [dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 optional = true
 features = ["uuid"]

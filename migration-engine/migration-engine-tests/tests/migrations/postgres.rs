@@ -125,6 +125,7 @@ fn native_type_columns_can_be_created(api: TestApi) {
         ("money", "Decimal", "Money", "money"),
         ("inet", "String", "Inet", "inet"),
         ("oid", "Int", "Oid", "oid"),
+        ("ltree", "String", "ltree", "ltree"),
     ];
 
     let mut dm = r#"
