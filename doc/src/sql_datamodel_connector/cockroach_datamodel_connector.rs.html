@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `libs&#x2F;datamodel&#x2F;connectors&#x2F;sql-datamodel-connector&#x2F;src&#x2F;cockroach_datamodel_connector.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cockroach_datamodel_connector.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../sql_datamodel_connector/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `libs&#x2F;datamodel&#x2F;connectors&#x2F;sql-datamodel-connector&#x2F;src&#x2F;cockroach_datamodel_connector.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cockroach_datamodel_connector.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../sql_datamodel_connector/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sql_datamodel_connector/index.html"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -299,11 +300,14 @@
 <span id="298">298</span>
 <span id="299">299</span>
 <span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">datamodel_connector</span>::{
-    <span class="ident">connector_error::ConnectorError</span>,
     <span class="ident">helper</span>::{<span class="ident">arg_vec_from_opt</span>, <span class="ident">args_vec_from_opt</span>, <span class="ident">parse_one_opt_u32</span>, <span class="ident">parse_two_opt_u32</span>},
-    <span class="ident">parser_database</span>, <span class="ident">Connector</span>, <span class="ident">ConnectorCapability</span>, <span class="ident">ConstraintScope</span>, <span class="ident">Diagnostics</span>, <span class="ident">NativeTypeConstructor</span>,
-    <span class="ident">NativeTypeInstance</span>, <span class="ident">ReferentialAction</span>, <span class="ident">ReferentialIntegrity</span>, <span class="ident">ScalarType</span>,
+    <span class="ident">parser_database</span>, <span class="ident">Connector</span>, <span class="ident">ConnectorCapability</span>, <span class="ident">ConstraintScope</span>, <span class="ident">DatamodelError</span>, <span class="ident">Diagnostics</span>,
+    <span class="ident">NativeTypeConstructor</span>, <span class="ident">NativeTypeInstance</span>, <span class="ident">ReferentialAction</span>, <span class="ident">ReferentialIntegrity</span>, <span class="ident">ScalarType</span>, <span class="ident">Span</span>,
 };
 <span class="kw">use</span> <span class="ident">enumflags2::BitFlags</span>;
 <span class="kw">use</span> <span class="ident">native_types</span>::{
@@ -333,7 +337,6 @@
 <span class="kw">const</span> <span class="ident">BIT_TYPE_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Bit&quot;</span>;
 <span class="kw">const</span> <span class="ident">VAR_BIT_TYPE_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;VarBit&quot;</span>;
 <span class="kw">const</span> <span class="ident">UUID_TYPE_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Uuid&quot;</span>;
-<span class="kw">const</span> <span class="ident">JSON_TYPE_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Json&quot;</span>;
 <span class="kw">const</span> <span class="ident">JSON_B_TYPE_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;JsonB&quot;</span>;
 
 <span class="kw">const</span> <span class="ident">NATIVE_TYPE_CONSTRUCTORS</span>: <span class="kw-2">&amp;</span>[<span class="ident">NativeTypeConstructor</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
@@ -359,7 +362,6 @@
     <span class="ident">NativeTypeConstructor::with_optional_args</span>(<span class="ident">BIT_TYPE_NAME</span>, <span class="number">1</span>, <span class="kw-2">&amp;</span>[<span class="ident">ScalarType::String</span>]),
     <span class="ident">NativeTypeConstructor::with_optional_args</span>(<span class="ident">VAR_BIT_TYPE_NAME</span>, <span class="number">1</span>, <span class="kw-2">&amp;</span>[<span class="ident">ScalarType::String</span>]),
     <span class="ident">NativeTypeConstructor::without_args</span>(<span class="ident">UUID_TYPE_NAME</span>, <span class="kw-2">&amp;</span>[<span class="ident">ScalarType::String</span>]),
-    <span class="ident">NativeTypeConstructor::without_args</span>(<span class="ident">JSON_TYPE_NAME</span>, <span class="kw-2">&amp;</span>[<span class="ident">ScalarType::Json</span>]),
     <span class="ident">NativeTypeConstructor::without_args</span>(<span class="ident">JSON_B_TYPE_NAME</span>, <span class="kw-2">&amp;</span>[<span class="ident">ScalarType::Json</span>]),
 ];
 
@@ -387,6 +389,7 @@
     <span class="ident">ConnectorCapability::ScalarLists</span>,
     <span class="ident">ConnectorCapability::UpdateableId</span>,
     <span class="ident">ConnectorCapability::WritableAutoincField</span>,
+    <span class="ident">ConnectorCapability::ImplicitManyToManyRelation</span>,
 ];
 
 <span class="kw">const</span> <span class="ident">SCALAR_TYPE_DEFAULTS</span>: <span class="kw-2">&amp;</span>[(<span class="ident">ScalarType</span>, <span class="ident">CockroachType</span>)] <span class="op">=</span> <span class="kw-2">&amp;</span>[
@@ -458,7 +461,6 @@
             <span class="ident">Time</span>(<span class="kw">_</span>) =&gt; <span class="ident">ScalarType::DateTime</span>,
             <span class="ident">Timetz</span>(<span class="kw">_</span>) =&gt; <span class="ident">ScalarType::DateTime</span>,
             <span class="comment">//Json</span>
-            <span class="ident">Json</span> =&gt; <span class="ident">ScalarType::Json</span>,
             <span class="ident">JsonB</span> =&gt; <span class="ident">ScalarType::Json</span>,
             <span class="comment">//Bytes</span>
             <span class="ident">ByteA</span> =&gt; <span class="ident">ScalarType::Bytes</span>,
@@ -488,7 +490,8 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">native_type_instance</span>: <span class="kw-2">&amp;</span><span class="ident">NativeTypeInstance</span>,
         <span class="ident">_scalar_type</span>: <span class="kw-2">&amp;</span><span class="ident">ScalarType</span>,
-        <span class="ident">errors</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ConnectorError</span><span class="op">&gt;</span>,
+        <span class="ident">span</span>: <span class="ident">Span</span>,
+        <span class="ident">errors</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Diagnostics</span>,
     ) {
         <span class="kw">let</span> <span class="ident">native_type</span>: <span class="ident">CockroachType</span> <span class="op">=</span>
             <span class="ident">serde_json::from_value</span>(<span class="ident">native_type_instance</span>.<span class="ident">serialized_native_type</span>.<span class="ident">clone</span>()).<span class="ident">unwrap</span>();
@@ -496,22 +499,25 @@
 
         <span class="kw">match</span> <span class="ident">native_type</span> {
             <span class="ident">Decimal</span>(<span class="prelude-val">Some</span>((<span class="ident">precision</span>, <span class="ident">scale</span>))) <span class="kw">if</span> <span class="ident">scale</span> <span class="op">&gt;</span> <span class="ident">precision</span> =&gt; {
-                <span class="ident">errors</span>.<span class="ident">push</span>(<span class="ident">error</span>.<span class="ident">new_scale_larger_than_precision_error</span>())
+                <span class="ident">errors</span>.<span class="ident">push_error</span>(<span class="ident">error</span>.<span class="ident">new_scale_larger_than_precision_error</span>(<span class="ident">span</span>))
             }
-            <span class="ident">Decimal</span>(<span class="prelude-val">Some</span>((<span class="ident">prec</span>, <span class="kw">_</span>))) <span class="kw">if</span> <span class="ident">prec</span> <span class="op">&gt;</span> <span class="number">1000</span> <span class="op">|</span><span class="op">|</span> <span class="ident">prec</span> <span class="op">==</span> <span class="number">0</span> =&gt; <span class="ident">errors</span>.<span class="ident">push</span>(
-                <span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(<span class="string">&quot;Precision must be positive with a maximum value of 1000.&quot;</span>),
-            ),
+            <span class="ident">Decimal</span>(<span class="prelude-val">Some</span>((<span class="ident">prec</span>, <span class="kw">_</span>))) <span class="kw">if</span> <span class="ident">prec</span> <span class="op">&gt;</span> <span class="number">1000</span> <span class="op">|</span><span class="op">|</span> <span class="ident">prec</span> <span class="op">==</span> <span class="number">0</span> =&gt; {
+                <span class="ident">errors</span>.<span class="ident">push_error</span>(<span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(
+                    <span class="string">&quot;Precision must be positive with a maximum value of 1000.&quot;</span>,
+                    <span class="ident">span</span>,
+                ))
+            }
             <span class="ident">Bit</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>)) <span class="op">|</span> <span class="ident">VarBit</span>(<span class="prelude-val">Some</span>(<span class="number">0</span>)) =&gt; {
-                <span class="ident">errors</span>.<span class="ident">push</span>(<span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(<span class="string">&quot;M must be a positive integer.&quot;</span>))
+                <span class="ident">errors</span>.<span class="ident">push_error</span>(<span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(<span class="string">&quot;M must be a positive integer.&quot;</span>, <span class="ident">span</span>))
             }
             <span class="ident">Timestamp</span>(<span class="prelude-val">Some</span>(<span class="ident">p</span>)) <span class="op">|</span> <span class="ident">Timestamptz</span>(<span class="prelude-val">Some</span>(<span class="ident">p</span>)) <span class="op">|</span> <span class="ident">Time</span>(<span class="prelude-val">Some</span>(<span class="ident">p</span>)) <span class="op">|</span> <span class="ident">Timetz</span>(<span class="prelude-val">Some</span>(<span class="ident">p</span>)) <span class="kw">if</span> <span class="ident">p</span> <span class="op">&gt;</span> <span class="number">6</span> =&gt; {
-                <span class="ident">errors</span>.<span class="ident">push</span>(<span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(<span class="string">&quot;M can range from 0 to 6.&quot;</span>))
+                <span class="ident">errors</span>.<span class="ident">push_error</span>(<span class="ident">error</span>.<span class="ident">new_argument_m_out_of_range_error</span>(<span class="string">&quot;M can range from 0 to 6.&quot;</span>, <span class="ident">span</span>))
             }
             <span class="kw">_</span> =&gt; (),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">validate_model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_model</span>: <span class="ident">parser_database::walkers::ModelWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">_diagnostics</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Diagnostics</span>) {}
+    <span class="kw">fn</span> <span class="ident">validate_model</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_model</span>: <span class="ident">parser_database::walkers::ModelWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">_diagnostics</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Diagnostics</span>) {}
 
     <span class="kw">fn</span> <span class="ident">constraint_violation_scopes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">ConstraintScope</span>] {
         <span class="ident">CONSTRAINT_SCOPES</span>
@@ -521,41 +527,45 @@
         <span class="ident">NATIVE_TYPE_CONSTRUCTORS</span>
     }
 
-    <span class="kw">fn</span> <span class="ident">parse_native_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">args</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">NativeTypeInstance</span>, <span class="ident">ConnectorError</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parse_native_type</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">args</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+        <span class="ident">span</span>: <span class="ident">Span</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">NativeTypeInstance</span>, <span class="ident">DatamodelError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">cloned_args</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">clone</span>();
 
         <span class="kw">let</span> <span class="ident">native_type</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">name</span> {
             <span class="ident">SMALL_INT_TYPE_NAME</span> =&gt; <span class="ident">SmallInt</span>,
             <span class="ident">INTEGER_TYPE_NAME</span> =&gt; <span class="ident">Integer</span>,
             <span class="ident">BIG_INT_TYPE_NAME</span> =&gt; <span class="ident">BigInt</span>,
-            <span class="ident">DECIMAL_TYPE_NAME</span> =&gt; <span class="ident">Decimal</span>(<span class="ident">parse_two_opt_u32</span>(<span class="ident">args</span>, <span class="ident">DECIMAL_TYPE_NAME</span>)<span class="question-mark">?</span>),
+            <span class="ident">DECIMAL_TYPE_NAME</span> =&gt; <span class="ident">Decimal</span>(<span class="ident">parse_two_opt_u32</span>(<span class="ident">args</span>, <span class="ident">DECIMAL_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
             <span class="ident">INET_TYPE_NAME</span> =&gt; <span class="ident">Inet</span>,
             <span class="ident">CITEXT_TYPE_NAME</span> =&gt; <span class="ident">Citext</span>,
             <span class="ident">OID_TYPE_NAME</span> =&gt; <span class="ident">Oid</span>,
             <span class="ident">REAL_TYPE_NAME</span> =&gt; <span class="ident">Real</span>,
             <span class="ident">DOUBLE_PRECISION_TYPE_NAME</span> =&gt; <span class="ident">DoublePrecision</span>,
-            <span class="ident">VARCHAR_TYPE_NAME</span> =&gt; <span class="ident">VarChar</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">VARCHAR_TYPE_NAME</span>)<span class="question-mark">?</span>),
-            <span class="ident">CHAR_TYPE_NAME</span> =&gt; <span class="ident">Char</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">CHAR_TYPE_NAME</span>)<span class="question-mark">?</span>),
+            <span class="ident">VARCHAR_TYPE_NAME</span> =&gt; <span class="ident">VarChar</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">VARCHAR_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
+            <span class="ident">CHAR_TYPE_NAME</span> =&gt; <span class="ident">Char</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">CHAR_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
             <span class="ident">TEXT_TYPE_NAME</span> =&gt; <span class="ident">Text</span>,
             <span class="ident">BYTE_A_TYPE_NAME</span> =&gt; <span class="ident">ByteA</span>,
-            <span class="ident">TIMESTAMP_TYPE_NAME</span> =&gt; <span class="ident">Timestamp</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIMESTAMP_TYPE_NAME</span>)<span class="question-mark">?</span>),
-            <span class="ident">TIMESTAMP_TZ_TYPE_NAME</span> =&gt; <span class="ident">Timestamptz</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIMESTAMP_TZ_TYPE_NAME</span>)<span class="question-mark">?</span>),
+            <span class="ident">TIMESTAMP_TYPE_NAME</span> =&gt; <span class="ident">Timestamp</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIMESTAMP_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
+            <span class="ident">TIMESTAMP_TZ_TYPE_NAME</span> =&gt; <span class="ident">Timestamptz</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIMESTAMP_TZ_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
             <span class="ident">DATE_TYPE_NAME</span> =&gt; <span class="ident">Date</span>,
-            <span class="ident">TIME_TYPE_NAME</span> =&gt; <span class="ident">Time</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIME_TYPE_NAME</span>)<span class="question-mark">?</span>),
-            <span class="ident">TIME_TZ_TYPE_NAME</span> =&gt; <span class="ident">Timetz</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIME_TZ_TYPE_NAME</span>)<span class="question-mark">?</span>),
+            <span class="ident">TIME_TYPE_NAME</span> =&gt; <span class="ident">Time</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIME_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
+            <span class="ident">TIME_TZ_TYPE_NAME</span> =&gt; <span class="ident">Timetz</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">TIME_TZ_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
             <span class="ident">BOOLEAN_TYPE_NAME</span> =&gt; <span class="ident">Boolean</span>,
-            <span class="ident">BIT_TYPE_NAME</span> =&gt; <span class="ident">Bit</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">BIT_TYPE_NAME</span>)<span class="question-mark">?</span>),
-            <span class="ident">VAR_BIT_TYPE_NAME</span> =&gt; <span class="ident">VarBit</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">VAR_BIT_TYPE_NAME</span>)<span class="question-mark">?</span>),
+            <span class="ident">BIT_TYPE_NAME</span> =&gt; <span class="ident">Bit</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">BIT_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
+            <span class="ident">VAR_BIT_TYPE_NAME</span> =&gt; <span class="ident">VarBit</span>(<span class="ident">parse_one_opt_u32</span>(<span class="ident">args</span>, <span class="ident">VAR_BIT_TYPE_NAME</span>, <span class="ident">span</span>)<span class="question-mark">?</span>),
             <span class="ident">UUID_TYPE_NAME</span> =&gt; <span class="ident">Uuid</span>,
-            <span class="ident">JSON_TYPE_NAME</span> =&gt; <span class="ident">Json</span>,
             <span class="ident">JSON_B_TYPE_NAME</span> =&gt; <span class="ident">JsonB</span>,
-            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ConnectorError::new_native_type_parser_error</span>(<span class="ident">name</span>)),
+            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DatamodelError::new_native_type_parser_error</span>(<span class="ident">name</span>, <span class="ident">span</span>)),
         };
 
         <span class="prelude-val">Ok</span>(<span class="ident">NativeTypeInstance::new</span>(<span class="ident">name</span>, <span class="ident">cloned_args</span>, <span class="ident">native_type</span>.<span class="ident">to_json</span>()))
     }
 
-    <span class="kw">fn</span> <span class="ident">introspect_native_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">native_type</span>: <span class="ident">serde_json::Value</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">NativeTypeInstance</span>, <span class="ident">ConnectorError</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">introspect_native_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">native_type</span>: <span class="ident">serde_json::Value</span>) -&gt; <span class="ident">NativeTypeInstance</span> {
         <span class="kw">let</span> <span class="ident">native_type</span>: <span class="ident">CockroachType</span> <span class="op">=</span> <span class="ident">serde_json::from_value</span>(<span class="ident">native_type</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> (<span class="ident">constructor_name</span>, <span class="ident">args</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">native_type</span> {
             <span class="ident">SmallInt</span> =&gt; (<span class="ident">SMALL_INT_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
@@ -577,7 +587,6 @@
             <span class="ident">Bit</span>(<span class="ident">x</span>) =&gt; (<span class="ident">BIT_TYPE_NAME</span>, <span class="ident">arg_vec_from_opt</span>(<span class="ident">x</span>)),
             <span class="ident">VarBit</span>(<span class="ident">x</span>) =&gt; (<span class="ident">VAR_BIT_TYPE_NAME</span>, <span class="ident">arg_vec_from_opt</span>(<span class="ident">x</span>)),
             <span class="ident">Uuid</span> =&gt; (<span class="ident">UUID_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
-            <span class="ident">Json</span> =&gt; (<span class="ident">JSON_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
             <span class="ident">JsonB</span> =&gt; (<span class="ident">JSON_B_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
             <span class="ident">Inet</span> =&gt; (<span class="ident">INET_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
             <span class="ident">Citext</span> =&gt; (<span class="ident">CITEXT_TYPE_NAME</span>, <span class="macro">vec!</span>[]),
@@ -585,9 +594,9 @@
         };
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">constructor</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">find_native_type_constructor</span>(<span class="ident">constructor_name</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">NativeTypeInstance::new</span>(<span class="ident">constructor</span>.<span class="ident">name</span>, <span class="ident">args</span>, <span class="ident">native_type</span>.<span class="ident">to_json</span>()))
+            <span class="ident">NativeTypeInstance::new</span>(<span class="ident">constructor</span>.<span class="ident">name</span>, <span class="ident">args</span>, <span class="ident">native_type</span>.<span class="ident">to_json</span>())
         } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">native_str_error</span>(<span class="ident">constructor_name</span>).<span class="ident">native_type_name_unknown</span>())
+            <span class="macro">unreachable!</span>()
         }
     }
 
@@ -600,5 +609,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sql_datamodel_connector" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sql_datamodel_connector" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0 (9d1b2106e 2022-02-23)" ></div>
 </body></html>

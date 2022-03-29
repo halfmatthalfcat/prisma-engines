@@ -1,5 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `libs&#x2F;datamodel&#x2F;parser-database&#x2F;src&#x2F;types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../parser_database/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `libs&#x2F;datamodel&#x2F;parser-database&#x2F;src&#x2F;types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../parser_database/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../parser_database/index.html"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -515,123 +516,12 @@
 <span id="514">514</span>
 <span id="515">515</span>
 <span id="516">516</span>
-<span id="517">517</span>
-<span id="518">518</span>
-<span id="519">519</span>
-<span id="520">520</span>
-<span id="521">521</span>
-<span id="522">522</span>
-<span id="523">523</span>
-<span id="524">524</span>
-<span id="525">525</span>
-<span id="526">526</span>
-<span id="527">527</span>
-<span id="528">528</span>
-<span id="529">529</span>
-<span id="530">530</span>
-<span id="531">531</span>
-<span id="532">532</span>
-<span id="533">533</span>
-<span id="534">534</span>
-<span id="535">535</span>
-<span id="536">536</span>
-<span id="537">537</span>
-<span id="538">538</span>
-<span id="539">539</span>
-<span id="540">540</span>
-<span id="541">541</span>
-<span id="542">542</span>
-<span id="543">543</span>
-<span id="544">544</span>
-<span id="545">545</span>
-<span id="546">546</span>
-<span id="547">547</span>
-<span id="548">548</span>
-<span id="549">549</span>
-<span id="550">550</span>
-<span id="551">551</span>
-<span id="552">552</span>
-<span id="553">553</span>
-<span id="554">554</span>
-<span id="555">555</span>
-<span id="556">556</span>
-<span id="557">557</span>
-<span id="558">558</span>
-<span id="559">559</span>
-<span id="560">560</span>
-<span id="561">561</span>
-<span id="562">562</span>
-<span id="563">563</span>
-<span id="564">564</span>
-<span id="565">565</span>
-<span id="566">566</span>
-<span id="567">567</span>
-<span id="568">568</span>
-<span id="569">569</span>
-<span id="570">570</span>
-<span id="571">571</span>
-<span id="572">572</span>
-<span id="573">573</span>
-<span id="574">574</span>
-<span id="575">575</span>
-<span id="576">576</span>
-<span id="577">577</span>
-<span id="578">578</span>
-<span id="579">579</span>
-<span id="580">580</span>
-<span id="581">581</span>
-<span id="582">582</span>
-<span id="583">583</span>
-<span id="584">584</span>
-<span id="585">585</span>
-<span id="586">586</span>
-<span id="587">587</span>
-<span id="588">588</span>
-<span id="589">589</span>
-<span id="590">590</span>
-<span id="591">591</span>
-<span id="592">592</span>
-<span id="593">593</span>
-<span id="594">594</span>
-<span id="595">595</span>
-<span id="596">596</span>
-<span id="597">597</span>
-<span id="598">598</span>
-<span id="599">599</span>
-<span id="600">600</span>
-<span id="601">601</span>
-<span id="602">602</span>
-<span id="603">603</span>
-<span id="604">604</span>
-<span id="605">605</span>
-<span id="606">606</span>
-<span id="607">607</span>
-<span id="608">608</span>
-<span id="609">609</span>
-<span id="610">610</span>
-<span id="611">611</span>
-<span id="612">612</span>
-<span id="613">613</span>
-<span id="614">614</span>
-<span id="615">615</span>
-<span id="616">616</span>
-<span id="617">617</span>
-<span id="618">618</span>
-<span id="619">619</span>
-<span id="620">620</span>
-<span id="621">621</span>
-<span id="622">622</span>
-<span id="623">623</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">context::Context</span>, <span class="ident">walkers::CompositeTypeFieldWalker</span>, <span class="ident">walkers::CompositeTypeWalker</span>, <span class="ident">DatamodelError</span>};
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">context::Context</span>, <span class="ident">interner::StringId</span>, <span class="ident">DatamodelError</span>};
 <span class="kw">use</span> <span class="ident">schema_ast::ast</span>::{<span class="self">self</span>, <span class="ident">WithName</span>};
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">HashMap</span>},
-    <span class="ident">fmt</span>,
-    <span class="ident">rc::Rc</span>,
-};
+<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">HashMap</span>};
 
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">resolve_types</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="kw">for</span> (<span class="ident">top_id</span>, <span class="ident">top</span>) <span class="kw">in</span> <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">ast</span>.<span class="ident">iter_tops</span>() {
+    <span class="kw">for</span> (<span class="ident">top_id</span>, <span class="ident">top</span>) <span class="kw">in</span> <span class="ident">ctx</span>.<span class="ident">ast</span>.<span class="ident">iter_tops</span>() {
         <span class="kw">match</span> (<span class="ident">top_id</span>, <span class="ident">top</span>) {
             (<span class="ident">ast::TopId::Alias</span>(<span class="ident">alias_id</span>), <span class="ident">ast::Top::Type</span>(<span class="ident">type_alias</span>)) =&gt; <span class="ident">visit_type_alias</span>(<span class="ident">alias_id</span>, <span class="ident">type_alias</span>, <span class="ident">ctx</span>),
             (<span class="ident">ast::TopId::Model</span>(<span class="ident">model_id</span>), <span class="ident">ast::Top::Model</span>(<span class="ident">model</span>)) =&gt; <span class="ident">visit_model</span>(<span class="ident">model_id</span>, <span class="ident">model</span>, <span class="ident">ctx</span>),
@@ -643,36 +533,31 @@
     }
 
     <span class="ident">detect_alias_cycles</span>(<span class="ident">ctx</span>);
-    <span class="ident">detect_composite_cycles</span>(<span class="ident">ctx</span>);
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">Types</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">composite_type_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::CompositeTypeId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">CompositeTypeField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">Types</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">composite_type_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::CompositeTypeId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">CompositeTypeField</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">type_aliases</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">ast::AliasId</span>, <span class="ident">ScalarFieldType</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">scalar_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::ModelId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">ScalarField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">scalar_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::ModelId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">ScalarField</span><span class="op">&gt;</span>,
     <span class="doccomment">/// This contains only the relation fields actually present in the schema</span>
     <span class="doccomment">/// source text.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">relation_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::ModelId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">RelationField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">enum_attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">ast::EnumId</span>, <span class="ident">EnumAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">model_attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">ast::ModelId</span>, <span class="ident">ModelAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">relation_fields</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">ast::ModelId</span>, <span class="ident">ast::FieldId</span>), <span class="ident">RelationField</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">enum_attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">ast::EnumId</span>, <span class="ident">EnumAttributes</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">model_attributes</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">ast::ModelId</span>, <span class="ident">ModelAttributes</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> <span class="ident">Types</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">Types</span> {
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">range_model_scalar_fields</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>,
-    ) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">ast::FieldId</span>, <span class="kw-2">&amp;</span><span class="ident">ScalarField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
+    ) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">ast::FieldId</span>, <span class="kw-2">&amp;</span><span class="ident">ScalarField</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">scalar_fields</span>
-            .<span class="ident">range</span>((<span class="ident">model_id</span>, <span class="ident">ast::FieldId::ZERO</span>)..<span class="op">=</span>(<span class="ident">model_id</span>, <span class="ident">ast::FieldId::MAX</span>))
+            .<span class="ident">range</span>((<span class="ident">model_id</span>, <span class="ident">ast::FieldId::MIN</span>)..<span class="op">=</span>(<span class="ident">model_id</span>, <span class="ident">ast::FieldId::MAX</span>))
             .<span class="ident">map</span>(<span class="op">|</span>((<span class="kw">_</span>, <span class="ident">field_id</span>), <span class="ident">scalar_field</span>)<span class="op">|</span> (<span class="kw-2">*</span><span class="ident">field_id</span>, <span class="ident">scalar_field</span>))
     }
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">take_scalar_field</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>,
-        <span class="ident">field_id</span>: <span class="ident">ast::FieldId</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ScalarField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">take_scalar_field</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>, <span class="ident">field_id</span>: <span class="ident">ast::FieldId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ScalarField</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">scalar_fields</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span>(<span class="ident">model_id</span>, <span class="ident">field_id</span>))
     }
 
@@ -680,22 +565,22 @@
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>,
         <span class="ident">field_id</span>: <span class="ident">ast::FieldId</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RelationField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RelationField</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">relation_fields</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span>(<span class="ident">model_id</span>, <span class="ident">field_id</span>))
     }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">CompositeTypeField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">CompositeTypeField</span> {
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">r#type</span>: <span class="ident">ScalarFieldType</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DefaultAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DefaultAttribute</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Native type name and arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// (attribute scope, native type name, arguments, span)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For example: `@db.Text` would translate to (&quot;db&quot;, &quot;Text&quot;, &amp;[], &lt;the span&gt;)</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">native_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">native_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">StringId</span>, <span class="ident">StringId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -704,8 +589,19 @@
     <span class="ident">Scalar</span>(<span class="ident">ScalarFieldType</span>),
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnsupportedType</span> {
+    <span class="ident">name</span>: <span class="ident">StringId</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">UnsupportedType</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="ident">StringId</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">name</span> }
+    }
+}
+
 <span class="doccomment">/// The type of a scalar field, parsed and categorized.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ScalarFieldType</span> {
     <span class="doccomment">/// A composite type</span>
     <span class="ident">CompositeType</span>(<span class="ident">ast::CompositeTypeId</span>),
@@ -716,7 +612,7 @@
     <span class="doccomment">/// A type alias</span>
     <span class="ident">Alias</span>(<span class="ident">ast::AliasId</span>),
     <span class="doccomment">/// An `Unsupported(&quot;...&quot;)` type</span>
-    <span class="ident">Unsupported</span>,
+    <span class="ident">Unsupported</span>(<span class="ident">UnsupportedType</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">ScalarFieldType</span> {
@@ -730,30 +626,30 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">DefaultAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Expression</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">default_attribute</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Attribute</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">DefaultAttribute</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">argument_idx</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">default_attribute</span>: <span class="ident">ast::AttributeId</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ScalarField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ScalarField</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">r#type</span>: <span class="ident">ScalarFieldType</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">is_ignored</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">is_updated_at</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DefaultAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DefaultAttribute</span><span class="op">&gt;</span>,
     <span class="doccomment">/// @map</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Native type name and arguments</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// (attribute scope, native type name, arguments, span)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For example: `@db.Text` would translate to (&quot;db&quot;, &quot;Text&quot;, &amp;[], &lt;the span&gt;)</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">native_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">native_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">StringId</span>, <span class="ident">StringId</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">RelationField</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">RelationField</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">referenced_model</span>: <span class="ident">ast::ModelId</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">on_delete</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::ReferentialAction</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">on_update</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident"><span class="kw">crate</span>::ReferentialAction</span>, <span class="ident">ast::Span</span>)<span class="op">&gt;</span>,
@@ -762,14 +658,14 @@
     <span class="doccomment">/// The `references` fields _explicitly present_ in the AST.</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">references</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ast::FieldId</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The name _explicitly present_ in the AST.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">is_ignored</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// The foreign key name _explicitly present_ in the AST through the `@map` attribute.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">relation_attribute</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Attribute</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">relation_attribute</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ast::AttributeId</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">RelationField</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">RelationField</span> {
     <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">referenced_model</span>: <span class="ident">ast::ModelId</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">RelationField</span> {
             <span class="ident">referenced_model</span>,
@@ -787,17 +683,17 @@
 
 <span class="doccomment">/// Information gathered from validating attributes on a model.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ModelAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ModelAttributes</span> {
     <span class="doccomment">/// @(@)id</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">primary_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IdAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">primary_key</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IdAttribute</span><span class="op">&gt;</span>,
     <span class="doccomment">/// @@ignore</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">is_ignored</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// @@index and @(@)unique explicitely written to the schema AST.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">ast_indexes</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Attribute</span>, <span class="ident">IndexAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">ast_indexes</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">ast::AttributeId</span>, <span class="ident">IndexAttribute</span>)<span class="op">&gt;</span>,
     <span class="doccomment">/// @(@)unique added implicitely to the datamodel by us.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">implicit_indexes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">IndexAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">implicit_indexes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">IndexAttribute</span><span class="op">&gt;</span>,
     <span class="doccomment">/// @@map</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// A type of index as defined by the `type: ...` argument on an index attribute.</span>
@@ -845,16 +741,16 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">IndexAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">IndexAttribute</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">r#type</span>: <span class="ident">IndexType</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fields</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FieldWithArgs</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">source_field</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ast::FieldId</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">algorithm</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IndexAlgorithm</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> <span class="ident">IndexAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">IndexAttribute</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_unique</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="macro">matches!</span>(<span class="self">self</span>.<span class="ident">r#type</span>, <span class="ident">IndexType::Unique</span>)
     }
@@ -862,15 +758,25 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_fulltext</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="macro">matches!</span>(<span class="self">self</span>.<span class="ident">r#type</span>, <span class="ident">IndexType::Fulltext</span>)
     }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">fields_match</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">ast::FieldId</span>]) -&gt; <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">fields</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">other</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">fields</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">iter</span>()).<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span>.<span class="ident">field_id</span> <span class="op">==</span> <span class="kw-2">*</span><span class="ident">b</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">IdAttribute</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">IdAttribute</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">fields</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FieldWithArgs</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">source_field</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ast::FieldId</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">source_attribute</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Attribute</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">source_attribute</span>: <span class="ident">ast::AttributeId</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">IdAttribute</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">fields_match</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span>[<span class="ident">ast::FieldId</span>]) -&gt; <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">fields</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="ident">other</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">fields</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">other</span>.<span class="ident">iter</span>()).<span class="ident">all</span>(<span class="op">|</span>(<span class="ident">a</span>, <span class="ident">b</span>)<span class="op">|</span> <span class="ident">a</span>.<span class="ident">field_id</span> <span class="op">==</span> <span class="kw-2">*</span><span class="ident">b</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -881,18 +787,18 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">EnumAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">EnumAttributes</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StringId</span><span class="op">&gt;</span>,
     <span class="doccomment">/// @map on enum values.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_values</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mapped_values</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">StringId</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">fn</span> <span class="ident">visit_model</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>(<span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>, <span class="ident">ast_model</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Model</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">visit_model</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>(<span class="ident">model_id</span>: <span class="ident">ast::ModelId</span>, <span class="ident">ast_model</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">ast::Model</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> (<span class="ident">field_id</span>, <span class="ident">ast_field</span>) <span class="kw">in</span> <span class="ident">ast_model</span>.<span class="ident">iter_fields</span>() {
         <span class="kw">match</span> <span class="ident">field_type</span>(<span class="ident">ast_field</span>, <span class="ident">ctx</span>) {
             <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Model</span>(<span class="ident">referenced_model</span>)) =&gt; {
                 <span class="kw">let</span> <span class="ident">rf</span> <span class="op">=</span> <span class="ident">RelationField::new</span>(<span class="ident">referenced_model</span>);
-                <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">relation_fields</span>.<span class="ident">insert</span>((<span class="ident">model_id</span>, <span class="ident">field_id</span>), <span class="ident">rf</span>);
+                <span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">relation_fields</span>.<span class="ident">insert</span>((<span class="ident">model_id</span>, <span class="ident">field_id</span>), <span class="ident">rf</span>);
             }
             <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">scalar_field_type</span>)) =&gt; {
                 <span class="kw">let</span> <span class="ident">field_data</span> <span class="op">=</span> <span class="ident">ScalarField</span> {
@@ -904,130 +810,13 @@
                     <span class="ident">native_type</span>: <span class="prelude-val">None</span>,
                 };
 
-                <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">scalar_fields</span>.<span class="ident">insert</span>((<span class="ident">model_id</span>, <span class="ident">field_id</span>), <span class="ident">field_data</span>);
+                <span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">scalar_fields</span>.<span class="ident">insert</span>((<span class="ident">model_id</span>, <span class="ident">field_id</span>), <span class="ident">field_data</span>);
             }
             <span class="prelude-val">Err</span>(<span class="ident">supported</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">DatamodelError::new_type_not_found_error</span>(
                 <span class="ident">supported</span>,
                 <span class="ident">ast_field</span>.<span class="ident">field_type</span>.<span class="ident">span</span>(),
             )),
         }
-    }
-}
-
-<span class="kw">struct</span> <span class="ident">CompositeTypePath</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span> {
-    <span class="ident">previous</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">CompositeTypePath</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">current</span>: <span class="ident">CompositeTypeWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span> <span class="ident">CompositeTypePath</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">root</span>(<span class="ident">current</span>: <span class="ident">CompositeTypeWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">previous</span>: <span class="prelude-val">None</span>,
-            <span class="ident">current</span>,
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">link</span>(<span class="self">self</span>: <span class="kw-2">&amp;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>, <span class="ident">current</span>: <span class="ident">CompositeTypeWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">previous</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">clone</span>()),
-            <span class="ident">current</span>,
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">CompositeTypePath</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span>, <span class="lifetime">&#39;db</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">traversed</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="self">self</span>.<span class="ident">current</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">this</span> <span class="op">=</span> <span class="self">self</span>;
-
-        <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">next</span>) <span class="op">=</span> <span class="ident">this</span>.<span class="ident">previous</span>.<span class="ident">as_ref</span>() {
-            <span class="ident">traversed</span>.<span class="ident">push</span>(<span class="ident">next</span>.<span class="ident">current</span>);
-            <span class="ident">this</span> <span class="op">=</span> <span class="ident">next</span>;
-        }
-
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">traversed</span>
-            .<span class="ident">into_iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">w</span><span class="op">|</span> <span class="ident">w</span>.<span class="ident">name</span>())
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;`{}`&quot;</span>, <span class="ident">n</span>))
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>()
-            .<span class="ident">join</span>(<span class="string">&quot; → &quot;</span>);
-
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>)
-    }
-}
-
-<span class="doccomment">/// Detect compound type chains that form a cycle, that is not broken with either an optional or an</span>
-<span class="doccomment">/// array type.</span>
-<span class="kw">fn</span> <span class="ident">detect_composite_cycles</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">visited</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ast::CompositeTypeId</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">errors</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">ast::CompositeTypeId</span>, <span class="ident">DatamodelError</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fields_to_traverse</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">CompositeTypeFieldWalker</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">CompositeTypePath</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ctx</span>
-        .<span class="ident">db</span>
-        .<span class="ident">walk_composite_types</span>()
-        .<span class="ident">flat_map</span>(<span class="op">|</span><span class="ident">ct</span><span class="op">|</span> <span class="ident">ct</span>.<span class="ident">fields</span>())
-        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">arity</span>().<span class="ident">is_required</span>())
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> (<span class="ident">f</span>, <span class="prelude-val">None</span>))
-        .<span class="ident">collect</span>();
-
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">field</span>, <span class="ident">path</span>)) <span class="op">=</span> <span class="ident">fields_to_traverse</span>.<span class="ident">pop</span>() {
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">path</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">path</span>) =&gt; <span class="ident">path</span>,
-            <span class="prelude-val">None</span> =&gt; {
-                <span class="ident">visited</span>.<span class="ident">clear</span>();
-                <span class="ident">Rc::new</span>(<span class="ident">CompositeTypePath::root</span>(<span class="ident">field</span>.<span class="ident">composite_type</span>()))
-            }
-        };
-
-        <span class="kw">match</span> <span class="ident">field</span>.<span class="ident">r#type</span>() {
-            <span class="ident">ScalarFieldType::CompositeType</span>(<span class="ident">ctid</span>) <span class="kw">if</span> <span class="ident">field</span>.<span class="ident">composite_type</span>().<span class="ident">composite_type_id</span>() <span class="op">==</span> <span class="kw-2">*</span><span class="ident">ctid</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="string">&quot;The type is the same as the parent and causes an endless cycle. Please change the field to be either optional or a list.&quot;</span>;
-                <span class="ident">errors</span>.<span class="ident">push</span>((
-                    <span class="kw-2">*</span><span class="ident">ctid</span>,
-                    <span class="ident">DatamodelError::new_composite_type_field_validation_error</span>(
-                        <span class="ident">msg</span>,
-                        <span class="ident">field</span>.<span class="ident">composite_type</span>().<span class="ident">name</span>(),
-                        <span class="ident">field</span>.<span class="ident">name</span>(),
-                        <span class="ident">field</span>.<span class="ident">ast_field</span>().<span class="ident">span</span>,
-                    ),
-                ));
-            }
-            <span class="ident">ScalarFieldType::CompositeType</span>(<span class="ident">ctid</span>) <span class="kw">if</span> <span class="ident">visited</span>.<span class="ident">first</span>() <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">ctid</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(
-                    <span class="string">&quot;The types cause an endless cycle in the path {}. Please change one of the fields to be either optional or a list to break the cycle.&quot;</span>,
-                    <span class="ident">path</span>,
-                );
-
-                <span class="ident">errors</span>.<span class="ident">push</span>((
-                    <span class="kw-2">*</span><span class="ident">ctid</span>,
-                    <span class="ident">DatamodelError::new_composite_type_field_validation_error</span>(
-                        <span class="kw-2">&amp;</span><span class="ident">msg</span>,
-                        <span class="ident">field</span>.<span class="ident">composite_type</span>().<span class="ident">name</span>(),
-                        <span class="ident">field</span>.<span class="ident">name</span>(),
-                        <span class="ident">field</span>.<span class="ident">ast_field</span>().<span class="ident">span</span>,
-                    ),
-                ));
-            }
-            <span class="ident">ScalarFieldType::CompositeType</span>(<span class="ident">ctid</span>) =&gt; {
-                <span class="ident">visited</span>.<span class="ident">push</span>(<span class="kw-2">*</span><span class="ident">ctid</span>);
-
-                <span class="kw">for</span> <span class="ident">field</span> <span class="kw">in</span> <span class="ident">ctx</span>
-                    .<span class="ident">db</span>
-                    .<span class="ident">walk_composite_type</span>(<span class="kw-2">*</span><span class="ident">ctid</span>)
-                    .<span class="ident">fields</span>()
-                    .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">arity</span>().<span class="ident">is_required</span>())
-                {
-                    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">Rc::new</span>(<span class="ident">path</span>.<span class="ident">link</span>(<span class="ident">field</span>.<span class="ident">composite_type</span>()));
-                    <span class="ident">fields_to_traverse</span>.<span class="ident">push</span>((<span class="ident">field</span>, <span class="prelude-val">Some</span>(<span class="ident">path</span>)));
-                }
-            }
-            <span class="kw">_</span> =&gt; (),
-        }
-    }
-
-    <span class="ident">errors</span>.<span class="ident">sort_by_key</span>(<span class="op">|</span>(<span class="ident">id</span>, <span class="ident">_err</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">id</span>);
-    <span class="kw">for</span> (<span class="kw">_</span>, <span class="ident">error</span>) <span class="kw">in</span> <span class="ident">errors</span> {
-        <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">error</span>);
     }
 }
 
@@ -1042,7 +831,7 @@
     <span class="comment">// We accumulate the errors here because we want to sort them at the end.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">errors</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">ast::AliasId</span>, <span class="ident">DatamodelError</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
 
-    <span class="kw">for</span> (<span class="ident">alias_id</span>, <span class="ident">ty</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span> {
+    <span class="kw">for</span> (<span class="ident">alias_id</span>, <span class="ident">ty</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span> {
         <span class="comment">// Loop variable. This is the &quot;tip&quot; of the sequence of type aliases.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">current</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">alias_id</span>, <span class="ident">ty</span>);
         <span class="ident">path</span>.<span class="ident">clear</span>();
@@ -1050,7 +839,7 @@
         <span class="comment">// Follow the chain of type aliases referencing other type aliases.</span>
         <span class="kw">while</span> <span class="kw">let</span> <span class="ident">ScalarFieldType::Alias</span>(<span class="ident">next_alias_id</span>) <span class="op">=</span> <span class="ident">current</span>.<span class="number">1</span> {
             <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">current</span>.<span class="number">0</span>);
-            <span class="kw">let</span> <span class="ident">next_alias</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">next_alias_id</span>];
+            <span class="kw">let</span> <span class="ident">next_alias</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">next_alias_id</span>];
             <span class="comment">// Detect a cycle where next type is also the root. In that</span>
             <span class="comment">// case, we want to report an error.</span>
             <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">1</span> <span class="op">&amp;&amp;</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="number">0</span>] <span class="op">==</span> <span class="ident">next_alias_id</span> {
@@ -1060,7 +849,7 @@
                         <span class="macro">format!</span>(
                             <span class="string">&quot;Recursive type definitions are not allowed. Recursive path was: {} -&gt; {}.&quot;</span>,
                             <span class="ident">path</span>.<span class="ident">iter</span>()
-                                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">id</span>].<span class="ident">name</span>.<span class="ident">name</span>.<span class="ident">as_str</span>())
+                                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> <span class="ident">ctx</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">id</span>].<span class="ident">name</span>.<span class="ident">name</span>.<span class="ident">as_str</span>())
                                 .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>()
                                 .<span class="ident">join</span>(<span class="string">&quot; -&gt; &quot;</span>),
                             <span class="kw-2">&amp;</span><span class="ident">next_alias</span>.<span class="ident">name</span>.<span class="ident">name</span>,
@@ -1078,7 +867,7 @@
                 <span class="kw">break</span>;
             }
 
-            <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span>.<span class="ident">get</span>(<span class="ident">next_alias_id</span>) {
+            <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span>.<span class="ident">get</span>(<span class="ident">next_alias_id</span>) {
                 <span class="prelude-val">Some</span>(<span class="ident">next_alias_type</span>) =&gt; {
                     <span class="ident">current</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">next_alias_id</span>, <span class="ident">next_alias_type</span>);
                 }
@@ -1096,7 +885,7 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">visit_composite_type</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>(<span class="ident">ct_id</span>: <span class="ident">ast::CompositeTypeId</span>, <span class="ident">ct</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::CompositeType</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">visit_composite_type</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>(<span class="ident">ct_id</span>: <span class="ident">ast::CompositeTypeId</span>, <span class="ident">ct</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">ast::CompositeType</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>) {
     <span class="kw">for</span> (<span class="ident">field_id</span>, <span class="ident">ast_field</span>) <span class="kw">in</span> <span class="ident">ct</span>.<span class="ident">iter_fields</span>() {
         <span class="kw">match</span> <span class="ident">field_type</span>(<span class="ident">ast_field</span>, <span class="ident">ctx</span>) {
             <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::Alias</span>(<span class="kw">_</span>))) =&gt; {
@@ -1114,10 +903,10 @@
                     <span class="ident">default</span>: <span class="prelude-val">None</span>,
                     <span class="ident">native_type</span>: <span class="prelude-val">None</span>,
                 };
-                <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">composite_type_fields</span>.<span class="ident">insert</span>((<span class="ident">ct_id</span>, <span class="ident">field_id</span>), <span class="ident">field</span>);
+                <span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">composite_type_fields</span>.<span class="ident">insert</span>((<span class="ident">ct_id</span>, <span class="ident">field_id</span>), <span class="ident">field</span>);
             }
             <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Model</span>(<span class="ident">referenced_model_id</span>)) =&gt; {
-                <span class="kw">let</span> <span class="ident">referenced_model_name</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">ast</span>[<span class="ident">referenced_model_id</span>].<span class="ident">name</span>();
+                <span class="kw">let</span> <span class="ident">referenced_model_name</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">ast</span>[<span class="ident">referenced_model_id</span>].<span class="ident">name</span>();
                 <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">DatamodelError::new_composite_type_validation_error</span>(<span class="macro">format!</span>(<span class="string">&quot;{} refers to a model, making this a relation field. Relation fields inside composite types are not supported.&quot;</span>, <span class="ident">referenced_model_name</span>), <span class="ident">ct</span>.<span class="ident">name</span>.<span class="ident">name</span>.<span class="ident">clone</span>(), <span class="ident">ast_field</span>.<span class="ident">field_type</span>.<span class="ident">span</span>()))
             }
             <span class="prelude-val">Err</span>(<span class="ident">supported</span>) =&gt; <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">DatamodelError::new_type_not_found_error</span>(
@@ -1128,7 +917,7 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">visit_enum</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>(<span class="ident">enm</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Enum</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">visit_enum</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>(<span class="ident">enm</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">ast::Enum</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>) {
     <span class="kw">if</span> <span class="ident">enm</span>.<span class="ident">values</span>.<span class="ident">is_empty</span>() {
         <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">DatamodelError::new_validation_error</span>(
             <span class="string">&quot;An enum must have at least one value.&quot;</span>.<span class="ident">to_owned</span>(),
@@ -1137,10 +926,10 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">visit_type_alias</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>(<span class="ident">alias_id</span>: <span class="ident">ast::AliasId</span>, <span class="ident">alias</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Field</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>) {
+<span class="kw">fn</span> <span class="ident">visit_type_alias</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>(<span class="ident">alias_id</span>: <span class="ident">ast::AliasId</span>, <span class="ident">alias</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">ast::Field</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>) {
     <span class="kw">match</span> <span class="ident">field_type</span>(<span class="ident">alias</span>, <span class="ident">ctx</span>) {
         <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">scalar_field_type</span>)) =&gt; {
-            <span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span>.<span class="ident">insert</span>(<span class="ident">alias_id</span>, <span class="ident">scalar_field_type</span>);
+            <span class="ident">ctx</span>.<span class="ident">types</span>.<span class="ident">type_aliases</span>.<span class="ident">insert</span>(<span class="ident">alias_id</span>, <span class="ident">scalar_field_type</span>);
         }
         <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Model</span>(<span class="kw">_</span>)) =&gt; <span class="ident">ctx</span>.<span class="ident">push_error</span>(<span class="ident">DatamodelError::new_validation_error</span>(
             <span class="string">&quot;Only scalar types can be used for defining custom types.&quot;</span>.<span class="ident">to_owned</span>(),
@@ -1155,23 +944,21 @@
 
 <span class="doccomment">/// Either a structured, supported type, or an Err(unsupported) if the type name</span>
 <span class="doccomment">/// does not match any we know of.</span>
-<span class="kw">fn</span> <span class="ident">field_type</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>(<span class="ident">field</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">ast::Field</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;ast</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FieldType</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;ast</span> <span class="ident">str</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">field_type</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>(<span class="ident">field</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">ast::Field</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;db</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">FieldType</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;db</span> <span class="ident">str</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">supported</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">field_type</span> {
         <span class="ident">ast::FieldType::Supported</span>(<span class="ident">ident</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">ident</span>.<span class="ident">name</span>,
-        <span class="ident">ast::FieldType::Unsupported</span>(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::Unsupported</span>)),
+        <span class="ident">ast::FieldType::Unsupported</span>(<span class="ident">name</span>, <span class="kw">_</span>) =&gt; {
+            <span class="kw">let</span> <span class="ident">unsupported</span> <span class="op">=</span> <span class="ident">UnsupportedType::new</span>(<span class="ident">ctx</span>.<span class="ident">interner</span>.<span class="ident">intern</span>(<span class="ident">name</span>));
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::Unsupported</span>(<span class="ident">unsupported</span>)));
+        }
     };
+    <span class="kw">let</span> <span class="ident">supported_string_id</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">interner</span>.<span class="ident">intern</span>(<span class="ident">supported</span>);
 
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">tpe</span>) <span class="op">=</span> <span class="ident">ScalarType::try_from_str</span>(<span class="ident">supported</span>) {
         <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::BuiltInScalar</span>(<span class="ident">tpe</span>)));
     }
 
-    <span class="kw">match</span> <span class="ident">ctx</span>
-        .<span class="ident">db</span>
-        .<span class="ident">names</span>
-        .<span class="ident">tops</span>
-        .<span class="ident">get</span>(<span class="ident">supported</span>.<span class="ident">as_str</span>())
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">id</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">db</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">id</span>]))
-    {
+    <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">names</span>.<span class="ident">tops</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">supported_string_id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">id</span>, <span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">ast</span>[<span class="kw-2">*</span><span class="ident">id</span>])) {
         <span class="prelude-val">Some</span>((<span class="ident">ast::TopId::Model</span>(<span class="ident">model_id</span>), <span class="ident">ast::Top::Model</span>(<span class="kw">_</span>))) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Model</span>(<span class="ident">model_id</span>)),
         <span class="prelude-val">Some</span>((<span class="ident">ast::TopId::Enum</span>(<span class="ident">enum_id</span>), <span class="ident">ast::Top::Enum</span>(<span class="kw">_</span>))) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::Enum</span>(<span class="ident">enum_id</span>))),
         <span class="prelude-val">Some</span>((<span class="ident">ast::TopId::Alias</span>(<span class="ident">id</span>), <span class="ident">ast::Top::Type</span>(<span class="kw">_</span>))) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">FieldType::Scalar</span>(<span class="ident">ScalarFieldType::Alias</span>(<span class="ident">id</span>))),
@@ -1185,7 +972,7 @@
 }
 
 <span class="doccomment">/// The sort order of an index.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SortOrder</span> {
     <span class="doccomment">/// ASCending</span>
     <span class="ident">Asc</span>,
@@ -1246,5 +1033,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="parser_database" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="parser_database" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0 (9d1b2106e 2022-02-23)" ></div>
 </body></html>
