@@ -1,9 +1,14 @@
+use datamodel::datamodel_connector::capabilities::*;
 use migration_core::migration_connector::{ConnectorError, ConnectorResult};
 use quaint::{prelude::*, single::Quaint};
 use std::collections::HashMap;
 use url::Url;
 
-pub(crate) async fn postgres_setup(url: String, prisma_schema: &str) -> ConnectorResult<()> {
+pub(crate) async fn postgres_setup(
+    url: String,
+    prisma_schema: &str,
+    capabilities: &[ConnectorCapability],
+) -> ConnectorResult<()> {
     {
         let mut url = Url::parse(&url).map_err(ConnectorError::url_parse_error)?;
         let quaint_url = quaint::connector::PostgresUrl::new(url.clone()).unwrap();
@@ -11,6 +16,9 @@ pub(crate) async fn postgres_setup(url: String, prisma_schema: &str) -> Connecto
 
         strip_schema_param_from_url(&mut url);
         let conn = create_postgres_admin_conn(url.clone()).await?;
+
+        let query = format!("DROP DATABASE IF EXISTS \"{}\"", db_name);
+        conn.raw_cmd(&query).await.ok();
 
         let query = format!("CREATE DATABASE \"{}\"", db_name);
         conn.raw_cmd(&query).await.ok();
@@ -27,6 +35,21 @@ pub(crate) async fn postgres_setup(url: String, prisma_schema: &str) -> Connecto
         conn.raw_cmd(&drop_and_recreate_schema)
             .await
             .map_err(|e| ConnectorError::from_source(e, ""))?;
+
+        let search_path = format!("SET search_path TO \"{schema}\",public;");
+        conn.raw_cmd(&search_path)
+            .await
+            .map_err(|e| ConnectorError::from_source(e, ""))?;
+
+        if capabilities.contains(&ConnectorCapability::Ltree) {
+            let ltree_ext = format!(
+                "CREATE EXTENSION IF NOT EXISTS ltree WITH SCHEMA \"{schema}\";",
+                schema = schema,
+            );
+            conn.raw_cmd(&ltree_ext)
+                .await
+                .map_err(|e| ConnectorError::from_source(e, ""))?;
+        }
     }
 
     crate::diff_and_apply(prisma_schema).await;

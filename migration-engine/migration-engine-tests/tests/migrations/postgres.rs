@@ -125,6 +125,7 @@ fn native_type_columns_can_be_created(api: TestApi) {
         ("money", "Decimal", "Money", "money"),
         ("inet", "String", "Inet", "inet"),
         ("oid", "Int", "Oid", "oid"),
+        ("ltree", "String", "ltree", "ltree"),
     ];
 
     let mut dm = r#"
@@ -399,7 +400,7 @@ fn foreign_key_renaming_to_default_works(api: TestApi) {
         }
     "#;
 
-    let migration = api.connector_diff(DiffTarget::Database, DiffTarget::Datamodel(target_schema.into()));
+    let migration = api.connector_diff(DiffTarget::Database, DiffTarget::Datamodel(target_schema));
     let expected = expect![[r#"
         -- RenameForeignKey
         ALTER TABLE "Dog" RENAME CONSTRAINT "favouriteFood" TO "Dog_favourite_food_id_fkey";

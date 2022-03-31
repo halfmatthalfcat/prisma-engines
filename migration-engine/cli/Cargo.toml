@@ -27,7 +27,8 @@ url = "2.1.1"
 connection-string = "0.1"
 
 [dev-dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 
 [[bin]]
 name = "migration-engine"

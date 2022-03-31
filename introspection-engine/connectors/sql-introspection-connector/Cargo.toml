@@ -29,7 +29,8 @@ user-facing-errors = { path = "../../../libs/user-facing-errors", features = ["s
 enumflags2 = "0.7.1"
 
 [dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 features = [
     "postgresql",
     "mysql",

@@ -760,6 +760,7 @@ static TYPE_MAPS: Lazy<HashMap<&'static str, &'static str>> = Lazy::new(|| {
     maps.insert("Oid", "Int");
     maps.insert("Money", "Decimal");
     maps.insert("Inet", "String");
+    maps.insert("ltree", "String");
 
     maps
 });

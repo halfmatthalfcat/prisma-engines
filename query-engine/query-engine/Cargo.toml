@@ -54,7 +54,7 @@ rustc_version = "0.2.3"
 anyhow = "1"
 chrono = "0.4"
 indoc = "1"
-serial_test = "*"
+serial_test = "0.6.0"
 
 [dev-dependencies.quaint]
 features = [
@@ -68,4 +68,5 @@ features = [
   "mssql",
   "bigdecimal",
 ]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"

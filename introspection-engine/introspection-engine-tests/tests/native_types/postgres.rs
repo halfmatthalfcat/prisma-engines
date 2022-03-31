@@ -181,3 +181,28 @@ async fn cdb_char_is_a_char(api: &TestApi) -> TestResult {
 
     Ok(())
 }
+
+#[test_connector(tags(Postgres13, Postgres14), exclude(CockroachDb), capabilities(Ltree))]
+async fn native_type_columns_feature_ltree(api: &TestApi) -> TestResult {
+    api.barrel()
+        .execute(move |migration| {
+            migration.create_table("Blog", move |t| {
+                t.inject_custom("id Integer Primary Key");
+                t.inject_custom("\"ltree\" ltree Not Null");
+            });
+        })
+        .await?;
+
+    let result = api.introspect_dml().await?;
+
+    let expected = expect![[r#"
+        model Blog {
+          id    Int    @id
+          ltree String @db.ltree
+        }
+    "#]];
+
+    expected.assert_eq(&result);
+
+    Ok(())
+}

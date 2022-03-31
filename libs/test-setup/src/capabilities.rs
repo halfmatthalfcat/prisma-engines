@@ -3,8 +3,9 @@
 #[derive(Copy, Clone, Debug, PartialEq)]
 #[repr(u8)]
 pub enum Capabilities {
-    ScalarLists = 0b0001,
-    Enums = 0b0010,
-    Json = 0b0100,
-    CreateDatabase = 0b1000,
+    ScalarLists = 1 << 1,
+    Enums = 1 << 2,
+    Json = 1 << 3,
+    CreateDatabase = 1 << 4,
+    Ltree = 1 << 5,
 }

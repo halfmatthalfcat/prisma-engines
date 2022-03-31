@@ -35,7 +35,8 @@ features = [
   "mssql",
   "bigdecimal",
 ]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 
 [dependencies.connector-interface]
 package = "query-connector"

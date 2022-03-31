@@ -2,6 +2,7 @@ use super::objects::*;
 use super::*;
 use crate::constants::json_null;
 use constants::{aggregations, filters};
+use datamodel::dml::NativeTypeInstance;
 use datamodel_connector::ConnectorCapability;
 use prisma_models::{dml::DefaultValue, CompositeFieldRef, PrismaValue};
 
@@ -44,6 +45,7 @@ pub(crate) fn get_field_filter_types(
                 !sf.is_required(),
                 false,
                 include_aggregates,
+                Option::from(&sf.native_type),
             ))];
 
             if sf.type_identifier != TypeIdentifier::Json {
@@ -239,11 +241,14 @@ fn full_scalar_filter_type(
     nullable: bool,
     nested: bool,
     include_aggregates: bool,
+    native_type: Option<&NativeTypeInstance>,
 ) -> InputObjectTypeWeakRef {
     let ident = Identifier::new(
         scalar_filter_name(typ, list, nullable, nested, include_aggregates),
         PRISMA_NAMESPACE,
     );
+
+    let is_ltree = native_type.map_or(false, |n| n.name == "ltree");
 
     return_cached_input!(ctx, &ident);
 
@@ -253,6 +258,10 @@ fn full_scalar_filter_type(
     let mapped_scalar_type = map_scalar_input_type(ctx, typ, list);
 
     let mut fields: Vec<_> = match typ {
+        TypeIdentifier::String if is_ltree => equality_filters(mapped_scalar_type.clone(), nullable)
+            .chain(alphanumeric_filters(mapped_scalar_type.clone()))
+            .chain(ltree_filters())
+            .collect(),
         TypeIdentifier::String | TypeIdentifier::UUID => equality_filters(mapped_scalar_type.clone(), nullable)
             .chain(inclusion_filters(mapped_scalar_type.clone(), nullable))
             .chain(alphanumeric_filters(mapped_scalar_type.clone()))
@@ -472,6 +481,16 @@ fn json_filters(ctx: &mut BuilderContext) -> impl Iterator<Item = InputField> {
     .into_iter()
 }
 
+fn ltree_filters() -> impl Iterator<Item = InputField> {
+    vec![
+        input_field(filters::IS_ANCESTOR, InputType::list(InputType::string()), None).optional(),
+        input_field(filters::IS_DESCENDANT, InputType::list(InputType::string()), None).optional(),
+        input_field(filters::MATCHES, InputType::list(InputType::string()), None).optional(),
+        input_field(filters::MATCHES_FULLTEXT, InputType::string(), None).optional(),
+    ]
+    .into_iter()
+}
+
 fn query_mode_field(ctx: &BuilderContext, nested: bool) -> impl Iterator<Item = InputField> {
     // Limit query mode field to the topmost filter level.
     // Only build mode field for connectors with insensitive filter support.
@@ -532,7 +551,7 @@ fn aggregate_filter_field(
     nullable: bool,
     list: bool,
 ) -> InputField {
-    let filters = full_scalar_filter_type(ctx, typ, list, nullable, true, false);
+    let filters = full_scalar_filter_type(ctx, typ, list, nullable, true, false, None);
     input_field(aggregation, InputType::object(filters), None).optional()
 }
 
@@ -580,6 +599,7 @@ fn not_filter_field(
                 is_nullable,
                 true,
                 include_aggregates,
+                None,
             ));
 
             input_field(filters::NOT_LOWERCASE, vec![mapped_scalar_type, shorthand], None)

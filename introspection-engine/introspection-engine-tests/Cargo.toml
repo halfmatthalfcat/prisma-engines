@@ -34,7 +34,8 @@ features = ["sqlite3", "mysql", "pg", "mssql"]
 branch = "mssql-support"
 
 [dependencies.quaint]
-git = "https://github.com/prisma/quaint"
+git = "https://github.com/halfmatthalfcat/quaint"
+branch = "postgres-ltree-support"
 features = [
     "postgresql",
     "mysql",

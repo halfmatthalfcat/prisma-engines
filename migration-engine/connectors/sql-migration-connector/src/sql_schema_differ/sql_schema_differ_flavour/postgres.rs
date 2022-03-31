@@ -460,6 +460,10 @@ fn postgres_native_type_change_riskyness(previous: PostgresType, next: PostgresT
                 VarChar(_) | Char(_) => RiskyCast,
                 _ => NotCastable,
             },
+            Ltree => match next {
+                Text | VarChar(None) | VarChar(_) | Char(_) => RiskyCast,
+                _ => NotCastable,
+            },
         })
     };
 

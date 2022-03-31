@@ -1,5 +1,6 @@
 use crate::model_extensions::*;
 use connector_interface::filter::*;
+use itertools::Itertools;
 use prisma_models::prelude::*;
 use quaint::ast::*;
 use std::convert::TryInto;
@@ -130,6 +131,7 @@ impl AliasedCondition for Filter {
             }
             Filter::Aggregation(filter) => filter.aliased_cond(alias),
             Filter::ScalarList(filter) => filter.aliased_cond(alias),
+            Filter::LtreeList(filter) => filter.aliased_cond(alias),
             Filter::Empty => ConditionTree::NoCondition,
             Filter::Composite(_) => unimplemented!("SQL connectors do not support composites yet."),
         }
@@ -414,6 +416,7 @@ fn convert_scalar_filter(
         ScalarCondition::JsonCompare(json_compare) => {
             convert_json_filter(comparable, json_compare, mode, fields.first().unwrap().to_owned())
         }
+        ScalarCondition::LtreeCompare(ltree_compare) => convert_ltree_filter(comparable, ltree_compare),
         _ => match mode {
             QueryMode::Default => default_scalar_filter(comparable, cond, fields),
             QueryMode::Insensitive => insensitive_scalar_filter(comparable, cond, fields, is_parent_aggregation),
@@ -547,6 +550,47 @@ fn filter_json_type(comparable: Expression<'static>, value: PrismaValue) -> Comp
     }
 }
 
+fn convert_ltree_filter(comparable: Expression<'static>, ltree_condition: LtreeCondition) -> ConditionTree<'static> {
+    let condition = match ltree_condition {
+        LtreeCondition::IsAncestor(values) => comparable.ltree_is_ancestor(extract_ltree_value(values)),
+        LtreeCondition::NotAncestor(values) => comparable.ltree_is_not_ancestor(extract_ltree_value(values)),
+        LtreeCondition::IsDescendent(values) => comparable.ltree_is_descendant(extract_ltree_value(values)),
+        LtreeCondition::NotDescendent(values) => comparable.ltree_is_not_descendant(extract_ltree_value(values)),
+        LtreeCondition::Matches(values) => comparable.ltree_match(extract_ltree_value(values)),
+        LtreeCondition::NotMatches(values) => comparable.ltree_match(extract_ltree_value(values)),
+        LtreeCondition::FullTextMatches(value) => comparable.ltree_match_fulltext(extract_ltree_value(vec![value])),
+        LtreeCondition::NotFullTextMatches(value) => {
+            comparable.ltree_does_not_match_fulltext(extract_ltree_value(vec![value]))
+        }
+    };
+
+    ConditionTree::single(condition)
+}
+
+fn extract_ltree_value<'a>(values: Vec<PrismaValue>) -> LtreeQuery<'a> {
+    if values.len() == 1 {
+        LtreeQuery::string(format!("{}", values.first().unwrap()))
+    } else {
+        let str_values = values.into_iter().map(|v| format!("{}", v)).collect_vec();
+        LtreeQuery::array(str_values)
+    }
+}
+
+impl AliasedCondition for LtreeFilter {
+    fn aliased_cond(self, alias: Option<Alias>) -> ConditionTree<'static> {
+        match alias {
+            Some(alias) => {
+                let comparable: Expression = self.field.as_column().table(alias.to_string(None)).into();
+                convert_ltree_filter(comparable, self.condition)
+            }
+            None => {
+                let comparable: Expression = self.field.as_column().into();
+                convert_ltree_filter(comparable, self.condition)
+            }
+        }
+    }
+}
+
 fn default_scalar_filter(
     comparable: Expression<'static>,
     cond: ScalarCondition,
@@ -611,6 +655,7 @@ fn default_scalar_filter(
         }
         ScalarCondition::JsonCompare(_) => unreachable!(),
         ScalarCondition::IsSet(_) => unreachable!(),
+        ScalarCondition::LtreeCompare(_) => unreachable!(),
     };
 
     ConditionTree::single(condition)
@@ -725,6 +770,7 @@ fn insensitive_scalar_filter(
         }
         ScalarCondition::JsonCompare(_) => unreachable!(),
         ScalarCondition::IsSet(_) => unreachable!(),
+        ScalarCondition::LtreeCompare(_) => unreachable!(),
     };
 
     ConditionTree::single(condition)

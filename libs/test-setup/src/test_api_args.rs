@@ -76,7 +76,8 @@ static DB_UNDER_TEST: Lazy<Result<DbUnderTest, String>> = Lazy::new(|| {
                 capabilities: Capabilities::Enums
                     | Capabilities::Json
                     | Capabilities::ScalarLists
-                    | Capabilities::CreateDatabase,
+                    | Capabilities::CreateDatabase
+                    | Capabilities::Ltree,
                 provider,
                 shadow_database_url,
             }
@@ -153,9 +154,14 @@ impl TestApiArgs {
     }
 
     pub async fn create_postgres_database(&self) -> (&'static str, Quaint, String) {
-        let (q, cs) = postgres::create_postgres_database(self.database_url(), self.test_function_name())
-            .await
-            .unwrap();
+        let (q, cs) = postgres::create_postgres_database(
+            self.database_url(),
+            self.test_function_name(),
+            self.capabilities(),
+            self.db.provider == "cockroachdb",
+        )
+        .await
+        .unwrap();
         (self.test_function_name(), q, cs)
     }
 

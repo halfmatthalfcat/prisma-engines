@@ -1,5 +1,6 @@
 use super::Filter;
-use crate::{compare::ScalarCompare, JsonFilterPath, JsonTargetType};
+use crate::ScalarCondition::LtreeCompare;
+use crate::{compare::ScalarCompare, JsonFilterPath, JsonTargetType, LtreeCondition};
 use prisma_models::{FieldSelection, ModelProjection, PrismaListValue, PrismaValue, ScalarFieldRef};
 use std::{collections::BTreeSet, sync::Arc};
 
@@ -146,6 +147,7 @@ pub enum ScalarCondition {
     In(PrismaListValue),
     NotIn(PrismaListValue),
     JsonCompare(JsonCondition),
+    LtreeCompare(LtreeCondition),
     Search(PrismaValue, Vec<ScalarProjection>),
     NotSearch(PrismaValue, Vec<ScalarProjection>),
     IsSet(bool),
@@ -184,6 +186,19 @@ impl ScalarCondition {
                         path: json_compare.path,
                         target_type: json_compare.target_type,
                     })
+                }
+                Self::LtreeCompare(ltree_compare) => {
+                    let compare = match ltree_compare {
+                        LtreeCondition::IsAncestor(v) => LtreeCondition::NotAncestor(v),
+                        LtreeCondition::NotAncestor(v) => LtreeCondition::IsAncestor(v),
+                        LtreeCondition::IsDescendent(v) => LtreeCondition::NotDescendent(v),
+                        LtreeCondition::NotDescendent(v) => LtreeCondition::IsDescendent(v),
+                        LtreeCondition::Matches(v) => LtreeCondition::NotMatches(v),
+                        LtreeCondition::NotMatches(v) => LtreeCondition::Matches(v),
+                        LtreeCondition::FullTextMatches(v) => LtreeCondition::NotFullTextMatches(v),
+                        LtreeCondition::NotFullTextMatches(v) => LtreeCondition::FullTextMatches(v),
+                    };
+                    LtreeCompare(compare)
                 }
                 Self::Search(v, fields) => Self::NotSearch(v, fields),
                 Self::NotSearch(v, fields) => Self::Search(v, fields),

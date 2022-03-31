@@ -37,6 +37,7 @@ const UUID_TYPE_NAME: &str = "Uuid";
 const XML_TYPE_NAME: &str = "Xml";
 const JSON_TYPE_NAME: &str = "Json";
 const JSON_B_TYPE_NAME: &str = "JsonB";
+const LTREE_TYPE_NAME: &str = "ltree";
 
 const NATIVE_TYPE_CONSTRUCTORS: &[NativeTypeConstructor] = &[
     NativeTypeConstructor::without_args(SMALL_INT_TYPE_NAME, &[ScalarType::Int]),
@@ -65,6 +66,7 @@ const NATIVE_TYPE_CONSTRUCTORS: &[NativeTypeConstructor] = &[
     NativeTypeConstructor::without_args(XML_TYPE_NAME, &[ScalarType::String]),
     NativeTypeConstructor::without_args(JSON_TYPE_NAME, &[ScalarType::Json]),
     NativeTypeConstructor::without_args(JSON_B_TYPE_NAME, &[ScalarType::Json]),
+    NativeTypeConstructor::without_args(LTREE_TYPE_NAME, &[ScalarType::String]),
 ];
 
 const CONSTRAINT_SCOPES: &[ConstraintScope] = &[
@@ -100,6 +102,8 @@ const CAPABILITIES: &[ConnectorCapability] = &[
     ConnectorCapability::WritableAutoincField,
     ConnectorCapability::UsingHashIndex,
     ConnectorCapability::ImplicitManyToManyRelation,
+    ConnectorCapability::DecimalType,
+    ConnectorCapability::Ltree,
 ];
 
 pub struct PostgresDatamodelConnector;
@@ -152,6 +156,7 @@ impl Connector for PostgresDatamodelConnector {
             Xml => ScalarType::String,
             Inet => ScalarType::String,
             Citext => ScalarType::String,
+            Ltree => ScalarType::String,
             //Boolean
             Boolean => ScalarType::Boolean,
             //Int
@@ -296,6 +301,7 @@ impl Connector for PostgresDatamodelConnector {
             XML_TYPE_NAME => Xml,
             JSON_TYPE_NAME => Json,
             JSON_B_TYPE_NAME => JsonB,
+            LTREE_TYPE_NAME => Ltree,
             _ => return Err(DatamodelError::new_native_type_parser_error(name, span)),
         };
 
@@ -331,6 +337,7 @@ impl Connector for PostgresDatamodelConnector {
             Inet => (INET_TYPE_NAME, vec![]),
             Citext => (CITEXT_TYPE_NAME, vec![]),
             Oid => (OID_TYPE_NAME, vec![]),
+            Ltree => (LTREE_TYPE_NAME, vec![]),
         };
 
         if let Some(constructor) = self.find_native_type_constructor(constructor_name) {

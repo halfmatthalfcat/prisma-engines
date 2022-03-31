@@ -1,7 +1,6 @@
 use super::*;
 use crate::utils::quote_connector;
 use darling::FromMeta;
-use itertools::Itertools;
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, Span};
 use quote::quote;
@@ -23,7 +22,7 @@ pub fn connector_test_impl(attr: TokenStream, input: TokenStream) -> TokenStream
     let handler = args.schema.unwrap().handler_path;
 
     // Renders the connectors as list to use in the code.
-    let connectors = connectors.into_iter().map(quote_connector).fold1(|aggr, next| {
+    let connectors = connectors.into_iter().map(quote_connector).reduce(|aggr, next| {
         quote! {
             #aggr, #next
         }
@@ -91,7 +90,7 @@ pub fn connector_test_impl(attr: TokenStream, input: TokenStream) -> TokenStream
                 query_tests_setup::run_with_tokio(async move {
                     tracing::debug!("Used datamodel:\n {}", datamodel.yellow());
 
-                    query_tests_setup::setup_project(&datamodel).await.unwrap();
+                    query_tests_setup::setup_project(&datamodel, capabilities.as_slice()).await.unwrap();
 
                     let requires_teardown = connector.requires_teardown();
                     let runner = Runner::load(config.runner(), datamodel.clone(), connector).await.unwrap();

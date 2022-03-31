@@ -1,4 +1,4 @@
-use crate::{runtime::run_with_tokio, AnyError, Tags};
+use crate::{runtime::run_with_tokio, AnyError, Capabilities, Tags};
 use enumflags2::BitFlags;
 use quaint::{prelude::Queryable, single::Quaint};
 use url::Url;
@@ -16,6 +16,10 @@ pub(crate) fn get_postgres_tags(database_url: &str) -> Result<BitFlags<Tags>, St
 
                 if version.contains("12.") {
                     tags |= Tags::Postgres12;
+                }
+
+                if version.contains("13.") {
+                    tags |= Tags::Postgres13;
                 }
 
                 if version.contains("14.") {
@@ -36,7 +40,12 @@ pub(crate) fn get_postgres_tags(database_url: &str) -> Result<BitFlags<Tags>, St
     run_with_tokio(fut)
 }
 
-pub(crate) async fn create_postgres_database(database_url: &str, db_name: &str) -> Result<(Quaint, String), AnyError> {
+pub(crate) async fn create_postgres_database(
+    database_url: &str,
+    db_name: &str,
+    capabilities: BitFlags<Capabilities>,
+    is_cockroach: bool,
+) -> Result<(Quaint, String), AnyError> {
     let mut url: Url = database_url.parse()?;
     let mut postgres_db_url = url.clone();
 
@@ -72,6 +81,11 @@ pub(crate) async fn create_postgres_database(database_url: &str, db_name: &str) 
     let conn = Quaint::new(&url_str).await?;
 
     conn.raw_cmd("CREATE SCHEMA \"prisma-tests\"").await?;
+
+    if !is_cockroach && capabilities.contains(Capabilities::Ltree) {
+        conn.raw_cmd("CREATE EXTENSION IF NOT EXISTS ltree WITH SCHEMA \"prisma-tests\";")
+            .await?;
+    }
 
     Ok((conn, url_str))
 }
